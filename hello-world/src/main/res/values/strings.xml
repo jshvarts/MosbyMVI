@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Hello World</string>
+    <string name="greeting_loading_error">Error loading greeting</string>
+</resources>

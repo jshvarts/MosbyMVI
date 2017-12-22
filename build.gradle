@@ -1,0 +1,42 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    ext {
+        kotlin_version = '1.1.60'
+        timberVersion = "4.6.0"
+        rxJavaVersion = "2.1.6"
+        rxAndroidVersion = "2.0.1"
+        butterKnifeVersion = "8.8.1"
+        supportLibraryVersion = "26.1.0"
+
+        libs = [
+                appCompat       : ('com.android.support:appcompat-v7:' + supportLibraryVersion),
+                recyclerView    : ('com.android.support:recyclerview-v7:' + supportLibraryVersion),
+                rxJava          : ('io.reactivex.rxjava2:rxjava:' + rxJavaVersion),
+                rxAndroid       : ('io.reactivex.rxjava2:rxandroid:' + rxAndroidVersion),
+                timber          : ('com.jakewharton.timber:timber:' + timberVersion)
+        ]
+    }
+
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
