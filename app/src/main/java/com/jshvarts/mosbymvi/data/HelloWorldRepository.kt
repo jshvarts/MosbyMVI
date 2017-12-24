@@ -1,6 +1,5 @@
 package com.jshvarts.mosbymvi.data
 
-import com.jshvarts.mosbymvi.domain.HelloWorldViewState
 import io.reactivex.Observable
 import java.util.Random
 
@@ -9,16 +8,10 @@ import java.util.Random
  */
 object HelloWorldRepository {
 
-    private val messages = listOf("Hello World", "Hola Mundo", "Hallo Welt", "Bonjour le monde")
-
-    fun loadHelloWorldText(): Observable<HelloWorldViewState> {
-        return Observable.just(HelloWorldViewState.DataState(getRandomMessage()))
-                .map<HelloWorldViewState> { it }
-                .startWith(HelloWorldViewState.LoadingState())
-                .onErrorReturn { HelloWorldViewState.ErrorState(it) }
-    }
+    fun loadHelloWorldText(): Observable<String> = Observable.just(getRandomMessage())
 
     private fun getRandomMessage(): String {
+        val messages = listOf("Hello World", "Hola Mundo", "Hallo Welt", "Bonjour le monde")
         return messages[Random().nextInt(messages.size)]
     }
 }
