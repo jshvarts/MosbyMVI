@@ -10,7 +10,7 @@ object GetHelloWorldTextUseCase {
     fun getHelloWorldText(): Observable<HelloWorldViewState> {
         return HelloWorldRepository.loadHelloWorldText()
                 .map<HelloWorldViewState> { HelloWorldViewState.DataState(it) }
-                .startWith(HelloWorldViewState.LoadingState())
+                .startWith(HelloWorldViewState.LoadingState)
                 .onErrorReturn { HelloWorldViewState.ErrorState(it) }
     }
 }
