@@ -2,7 +2,7 @@ package com.jshvarts.mosbymvi.data
 
 import com.jshvarts.mosbymvi.domain.HelloWorldViewState
 import io.reactivex.Observable
-import java.util.*
+import java.util.Random
 
 /**
  * In a Production app, inject your Repository into your Use Case instead.
