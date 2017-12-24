@@ -9,6 +9,8 @@ import android.widget.Toast
 import com.hannesdorfmann.mosby3.mvi.MviActivity
 import com.jakewharton.rxbinding2.view.clicks
 import com.jshvarts.mosbymvi.domain.HelloWorldViewState
+import io.reactivex.Observable
+import java.util.concurrent.TimeUnit
 
 class MainActivity : MviActivity<HelloWorldView, HelloWorldPresenter>(), HelloWorldView {
 
@@ -25,7 +27,10 @@ class MainActivity : MviActivity<HelloWorldView, HelloWorldPresenter>(), HelloWo
 
     override fun createPresenter() = HelloWorldPresenter()
 
-    override fun sayHelloWorldIntent() = sayHelloWorldButton.clicks()
+    override fun sayHelloWorldIntent(): Observable<Unit> {
+        return sayHelloWorldButton.clicks()
+                .debounce(400, TimeUnit.MILLISECONDS)
+    }
 
     override fun render(state: HelloWorldViewState) {
         when(state) {
@@ -42,8 +47,10 @@ class MainActivity : MviActivity<HelloWorldView, HelloWorldPresenter>(), HelloWo
 
     private fun renderDataState(dataState: HelloWorldViewState.DataState) {
         loadingIndicator.visibility = View.GONE
-        helloWorldTextView.visibility = View.VISIBLE
-        helloWorldTextView.text = dataState.greeting
+        helloWorldTextView.apply {
+            visibility = View.VISIBLE
+            text = dataState.greeting
+        }
     }
 
     private fun renderErrorState(errorState: HelloWorldViewState.ErrorState) {

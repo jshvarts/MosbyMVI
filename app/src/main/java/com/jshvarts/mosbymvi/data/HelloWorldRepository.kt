@@ -15,7 +15,7 @@ object HelloWorldRepository {
         return Observable.just(HelloWorldViewState.DataState(getRandomMessage()))
                 .map<HelloWorldViewState> { it }
                 .startWith(HelloWorldViewState.LoadingState())
-                .onErrorReturn {e: Throwable -> HelloWorldViewState.ErrorState(e) }
+                .onErrorReturn { HelloWorldViewState.ErrorState(it) }
     }
 
     private fun getRandomMessage(): String {

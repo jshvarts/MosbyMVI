@@ -10,13 +10,12 @@ import timber.log.Timber
 
 class HelloWorldPresenter : MviBasePresenter<HelloWorldView, HelloWorldViewState>() {
     override fun bindIntents() {
-        val showHelloWorld: Observable<HelloWorldViewState> = intent(HelloWorldView::sayHelloWorldIntent)
+        val helloWorldState: Observable<HelloWorldViewState> = intent(HelloWorldView::sayHelloWorldIntent)
                 .subscribeOn(Schedulers.io())
                 .switchMap { GetHelloWorldTextUseCase.getHelloWorldText() }
+                .doOnNext { Timber.d("Received new state: " + it) }
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { Timber.d("Received sayHelloIntent") }
-                .doAfterNext { Timber.d("Received new state: " + it) }
 
-        subscribeViewState(showHelloWorld, HelloWorldView::render)
+        subscribeViewState(helloWorldState, HelloWorldView::render)
     }
 }
