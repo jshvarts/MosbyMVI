@@ -5,6 +5,9 @@ import com.jshvarts.mosbymvi.domain.HelloWorldViewState
 import io.reactivex.Observable
 
 interface HelloWorldView : MvpView {
+    /**
+     * Emits button clicks
+     */
     fun sayHelloWorldIntent(): Observable<Unit>
 
     /**
