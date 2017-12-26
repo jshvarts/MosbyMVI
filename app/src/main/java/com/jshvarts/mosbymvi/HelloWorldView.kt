@@ -11,7 +11,7 @@ interface HelloWorldView : MvpView {
     fun sayHelloWorldIntent(): Observable<Unit>
 
     /**
-     * Render the state in the UI
+     * Renders the state in the UI
      */
     fun render(state: HelloWorldViewState)
 }
