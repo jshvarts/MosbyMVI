@@ -15,3 +15,4 @@ interface HelloWorldView : MvpView {
      */
     fun render(state: HelloWorldViewState)
 }
+

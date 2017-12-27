@@ -21,3 +21,4 @@ class HelloWorldPresenter : MviBasePresenter<HelloWorldView, HelloWorldViewState
         subscribeViewState(helloWorldState, HelloWorldView::render)
     }
 }
+

@@ -5,3 +5,4 @@ sealed class HelloWorldViewState {
     data class DataState(val greeting: String) : HelloWorldViewState()
     data class ErrorState(val error: Throwable) : HelloWorldViewState()
 }
+

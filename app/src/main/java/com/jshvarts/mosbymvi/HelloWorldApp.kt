@@ -12,3 +12,4 @@ class HelloWorldApp : Application() {
         }
     }
 }
+
