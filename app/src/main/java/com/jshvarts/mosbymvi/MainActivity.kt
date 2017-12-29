@@ -1,7 +1,6 @@
 package com.jshvarts.mosbymvi
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import com.hannesdorfmann.mosby3.mvi.MviActivity
 import com.jakewharton.rxbinding2.view.clicks
@@ -28,21 +27,21 @@ class MainActivity : MviActivity<HelloWorldView, HelloWorldPresenter>(), HelloWo
     }
 
     private fun renderLoadingState() {
-        loadingIndicator.visibility = View.VISIBLE
-        helloWorldTextview.visibility = View.GONE
+        loadingIndicator.visible = true
+        helloWorldTextview.visible = false
     }
 
     private fun renderDataState(dataState: HelloWorldViewState.DataState) {
-        loadingIndicator.visibility = View.GONE
+        loadingIndicator.visible = false
         helloWorldTextview.apply {
-            visibility = View.VISIBLE
+            visible = true
             text = dataState.greeting
         }
     }
 
     private fun renderErrorState(errorState: HelloWorldViewState.ErrorState) {
-        loadingIndicator.visibility = View.GONE
-        helloWorldTextview.visibility = View.GONE
+        loadingIndicator.visible = false
+        helloWorldTextview.visible = false
         Toast.makeText(this, "error ${errorState.error}", Toast.LENGTH_LONG).show()
     }
 }
